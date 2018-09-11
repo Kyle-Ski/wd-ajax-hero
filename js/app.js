@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  const movies = [];
+  let movies = [];
 
   const renderMovies = function() {
     $('#listings').empty();
@@ -57,9 +57,13 @@
   let button = document.querySelector('button')
   button.addEventListener('click',function(e){
     e.preventDefault()
-    let search = document.querySelector('#search')
-    let searchValue = search.value
-    getAPI(searchValue)
+    if (movies.length !== 0){
+      movies = []
+    } else {
+      let search = document.querySelector('#search')
+      let searchValue = search.value
+      getAPI(searchValue)  
+    }
   })
 
   let apiUrl = 'http://www.omdbapi.com/?apikey=b224234e&s='
