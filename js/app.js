@@ -61,14 +61,16 @@
     let search = document.querySelector('#search')
     let searchValue = search.value
     getAPI(searchValue)
-
   })
-  let apiUrl = 'http://www.omdbapi.com/?apikey=b224234e&t='
+
+  let apiUrl = 'http://www.omdbapi.com/?apikey=b224234e&s='
   function getAPI(search){
     fetch(apiUrl + search)
     .then((response) => response.json())
     .then(data => {
-      console.log(data)
+      console.log(data.Search)
+      for (let i = 0; i < data.Search.length; i++)
+      console.log(data.Search[i])
     })
   }
   // ADD YOUR CODE HERE
