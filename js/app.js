@@ -54,7 +54,6 @@
       $('.modal-trigger').leanModal();
     }
   };
-  // 'http://www.omdbapi.com/?apikey=b224234e&t=star+wars'
   let button = document.querySelector('button')
   button.addEventListener('click',function(e){
     e.preventDefault()
@@ -69,8 +68,10 @@
     .then((response) => response.json())
     .then(data => {
       console.log(data.Search)
-      for (let i = 0; i < data.Search.length; i++)
-      console.log(data.Search[i])
+      for (let i = 0; i < data.Search.length; i++){
+        movies.push(data.Search[i])
+      }
+      renderMovies()
     })
   }
   // ADD YOUR CODE HERE
