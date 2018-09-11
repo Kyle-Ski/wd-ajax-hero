@@ -55,6 +55,14 @@
     }
   };
   // 'http://www.omdbapi.com/?apikey=b224234e&t=star+wars'
+  let button = document.querySelector('button')
+  button.addEventListener('click',function(e){
+    e.preventDefault()
+    let search = document.querySelector('#search')
+    let searchValue = search.value
+    getAPI(searchValue)
+
+  })
   let apiUrl = 'http://www.omdbapi.com/?apikey=b224234e&t='
   function getAPI(search){
     fetch(apiUrl + search)
@@ -63,6 +71,5 @@
       console.log(data)
     })
   }
-  getAPI('jumanji')
   // ADD YOUR CODE HERE
 })();
