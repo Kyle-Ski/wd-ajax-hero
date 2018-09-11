@@ -1,6 +1,5 @@
 (function() {
   'use strict';
-
   const movies = [];
 
   const renderMovies = function() {
@@ -55,6 +54,15 @@
       $('.modal-trigger').leanModal();
     }
   };
-
+  // 'http://www.omdbapi.com/?apikey=b224234e&t=star+wars'
+  let apiUrl = 'http://www.omdbapi.com/?apikey=b224234e&t='
+  function getAPI(search){
+    fetch(apiUrl + search)
+    .then((response) => response.json())
+    .then(data => {
+      console.log(data)
+    })
+  }
+  getAPI('jumanji')
   // ADD YOUR CODE HERE
 })();
