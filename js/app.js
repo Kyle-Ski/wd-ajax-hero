@@ -54,14 +54,12 @@
       $('.modal-trigger').leanModal();
     }
   };
-  // https://omdb-api.now.sh/?s=
   
   let apiUrl = 'http://www.omdbapi.com/?apikey=b224234e&s='
   function getAPI(search){
     fetch(apiUrl + search)
     .then((response) => response.json())
     .then(data => {
-      console.log(data.Search)
       for (let i = 0; i < data.Search.length; i++){
 
         movies.push(data.Search[i])
