@@ -13,16 +13,16 @@
 
       $title.attr({
         'data-position': 'top',
-        'data-tooltip': movie.title
+        'data-tooltip': movie.Title
       });
 
-      $title.tooltip({ delay: 50 }).text(movie.title);
+      $title.tooltip({ delay: 50 }).text(movie.Title);
 
       const $poster = $('<img>').addClass('poster');
 
       $poster.attr({
-        src: movie.poster,
-        alt: `${movie.poster} Poster`
+        src: movie.Poster,
+        alt: `${movie.Poster} Poster`
       });
 
       $content.append($title, $poster);
@@ -40,7 +40,7 @@
 
       const $modal = $('<div>').addClass('modal').attr('id', movie.id);
       const $modalContent = $('<div>').addClass('modal-content');
-      const $modalHeader = $('<h4>').text(movie.title);
+      const $modalHeader = $('<h4>').text(movie.Title);
       const $movieYear = $('<h6>').text(`Released in ${movie.year}`);
       const $modalText = $('<p>').text(movie.plot);
 
@@ -54,6 +54,21 @@
       $('.modal-trigger').leanModal();
     }
   };
+  // https://omdb-api.now.sh/?s=
+  
+  let apiUrl = 'http://www.omdbapi.com/?apikey=b224234e&s='
+  function getAPI(search){
+    fetch(apiUrl + search)
+    .then((response) => response.json())
+    .then(data => {
+      console.log(data.Search)
+      for (let i = 0; i < data.Search.length; i++){
+
+        movies.push(data.Search[i])
+      }
+      renderMovies()    
+    })
+  }
   let button = document.querySelector('button')
   button.addEventListener('click',function(e){
     e.preventDefault()
@@ -66,17 +81,5 @@
     }
   })
 
-  let apiUrl = 'http://www.omdbapi.com/?apikey=b224234e&s='
-  function getAPI(search){
-    fetch(apiUrl + search)
-    .then((response) => response.json())
-    .then(data => {
-      console.log(data.Search)
-      for (let i = 0; i < data.Search.length; i++){
-        movies.push(data.Search[i])
-      }
-      renderMovies()
-    })
-  }
   // ADD YOUR CODE HERE
 })();
